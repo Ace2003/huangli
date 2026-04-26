@@ -3,10 +3,12 @@ from .huangli_module import HuangliModule
 from .weather_module import WeatherModule
 from .lucky_color_module import LuckyColorModule
 from .outfit_recommendation_module import OutfitRecommendationModule
+from .user_info_module import UserInfoModule
 
 __all__ = [
     'HuangliModule',
     'WeatherModule',
     'LuckyColorModule',
-    'OutfitRecommendationModule'
+    'OutfitRecommendationModule',
+    'UserInfoModule'
 ]

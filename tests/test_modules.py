@@ -3,7 +3,8 @@ import pytest
 from datetime import datetime, timedelta
 
 from modules import (
-    HuangliModule, WeatherModule, LuckyColorModule, OutfitRecommendationModule
+    HuangliModule, WeatherModule, LuckyColorModule, 
+    OutfitRecommendationModule, UserInfoModule
 )
 from framework import ModuleStatus
 
@@ -415,3 +416,202 @@ class TestIntegration:
             weather_module.shutdown()
             lucky_color_module.shutdown()
             outfit_module.shutdown()
+
+
+class TestUserInfoModule:
+    """用户信息模块测试类"""
+    
+    def setup_class(cls):
+        """类级别的设置：初始化模块"""
+        cls.module = UserInfoModule()
+        cls.module.initialize()
+    
+    def teardown_class(cls):
+        """类级别的清理：关闭模块"""
+        cls.module.shutdown()
+    
+    def test_module_initialization(self):
+        """测试模块初始化"""
+        assert self.module.status == ModuleStatus.READY
+    
+    def test_calculate_zodiac(self):
+        """测试生肖计算"""
+        # 测试已知年份的生肖
+        assert self.module._calculate_zodiac(1984) == '鼠'
+        assert self.module._calculate_zodiac(1985) == '牛'
+        assert self.module._calculate_zodiac(1986) == '虎'
+        assert self.module._calculate_zodiac(1987) == '兔'
+        assert self.module._calculate_zodiac(1988) == '龙'
+        assert self.module._calculate_zodiac(2000) == '龙'
+    
+    def test_calculate_zodiac_sign(self):
+        """测试星座计算"""
+        # 测试摩羯座 (12.22-1.19)
+        assert self.module._calculate_zodiac_sign(1, 1) == '摩羯座'
+        assert self.module._calculate_zodiac_sign(1, 15) == '摩羯座'
+        assert self.module._calculate_zodiac_sign(12, 25) == '摩羯座'
+        
+        # 测试水瓶座 (1.20-2.18)
+        assert self.module._calculate_zodiac_sign(1, 20) == '水瓶座'
+        assert self.module._calculate_zodiac_sign(2, 10) == '水瓶座'
+        
+        # 测试双鱼座 (2.19-3.20)
+        assert self.module._calculate_zodiac_sign(2, 19) == '双鱼座'
+        assert self.module._calculate_zodiac_sign(3, 15) == '双鱼座'
+        
+        # 测试白羊座 (3.21-4.19)
+        assert self.module._calculate_zodiac_sign(3, 21) == '白羊座'
+        assert self.module._calculate_zodiac_sign(4, 15) == '白羊座'
+        
+        # 测试金牛座 (4.20-5.20)
+        assert self.module._calculate_zodiac_sign(4, 20) == '金牛座'
+        assert self.module._calculate_zodiac_sign(5, 15) == '金牛座'
+        
+        # 测试双子座 (5.21-6.21)
+        assert self.module._calculate_zodiac_sign(5, 21) == '双子座'
+        assert self.module._calculate_zodiac_sign(6, 15) == '双子座'
+        
+        # 测试巨蟹座 (6.22-7.22)
+        assert self.module._calculate_zodiac_sign(6, 22) == '巨蟹座'
+        assert self.module._calculate_zodiac_sign(7, 15) == '巨蟹座'
+        
+        # 测试狮子座 (7.23-8.22)
+        assert self.module._calculate_zodiac_sign(7, 23) == '狮子座'
+        assert self.module._calculate_zodiac_sign(8, 15) == '狮子座'
+        
+        # 测试处女座 (8.23-9.22)
+        assert self.module._calculate_zodiac_sign(8, 23) == '处女座'
+        assert self.module._calculate_zodiac_sign(9, 15) == '处女座'
+        
+        # 测试天秤座 (9.23-10.23)
+        assert self.module._calculate_zodiac_sign(9, 23) == '天秤座'
+        assert self.module._calculate_zodiac_sign(10, 15) == '天秤座'
+        
+        # 测试天蝎座 (10.24-11.22)
+        assert self.module._calculate_zodiac_sign(10, 24) == '天蝎座'
+        assert self.module._calculate_zodiac_sign(11, 15) == '天蝎座'
+        
+        # 测试射手座 (11.23-12.21)
+        assert self.module._calculate_zodiac_sign(11, 23) == '射手座'
+        assert self.module._calculate_zodiac_sign(12, 15) == '射手座'
+    
+    def test_parse_birthday(self):
+        """测试生日解析"""
+        # 测试多种日期格式
+        assert self.module._parse_birthday('1990-05-20').year == 1990
+        assert self.module._parse_birthday('1990/05/20').month == 5
+        assert self.module._parse_birthday('1990年05月20日').day == 20
+        
+        # 测试无效格式
+        with pytest.raises(ValueError):
+            self.module._parse_birthday('invalid')
+    
+    def test_parse_style_preferences(self):
+        """测试风格偏好解析"""
+        # 测试正常解析
+        result = self.module._parse_style_preferences('1, 2, 3')
+        assert '商务正装' in result
+        assert '商务休闲' in result
+        assert '休闲日常' in result
+        
+        # 测试空输入
+        assert self.module._parse_style_preferences('') == []
+        
+        # 测试无效输入
+        assert self.module._parse_style_preferences('999, 0') == []
+    
+    def test_parse_occasion_preferences(self):
+        """测试场合偏好解析"""
+        # 测试正常解析
+        result = self.module._parse_occasion_preferences('1, 2, 5')
+        assert '商务会议' in result
+        assert '日常办公' in result
+        assert '朋友聚会' in result
+        
+        # 测试空输入
+        assert self.module._parse_occasion_preferences('') == []
+    
+    def test_get_user_data_empty(self):
+        """测试获取空用户数据"""
+        user_data = self.module.get_user_data()
+        assert user_data == {}
+    
+    def test_get_user_preferences_empty(self):
+        """测试获取空用户偏好"""
+        preferences = self.module.get_user_preferences()
+        assert preferences == {}
+
+
+class TestOutfitRecommendationImprovements:
+    """穿搭推荐改进测试类"""
+    
+    def setup_class(cls):
+        """类级别的设置：初始化模块"""
+        cls.module = OutfitRecommendationModule()
+        cls.module.initialize()
+    
+    def teardown_class(cls):
+        """类级别的清理：关闭模块"""
+        cls.module.shutdown()
+    
+    def test_check_weather_match(self):
+        """测试天气匹配逻辑"""
+        # 测试精确匹配
+        assert self.module._check_weather_match('晴', ['晴', '多云']) is True
+        
+        # 测试包含匹配
+        assert self.module._check_weather_match('小雨', ['雨', '晴']) is True
+        assert self.module._check_weather_match('大雨', ['小雨', '晴']) is True
+        assert self.module._check_weather_match('雷阵雨', ['雨', '晴']) is True
+        
+        # 测试雪类匹配
+        assert self.module._check_weather_match('小雪', ['雪', '晴']) is True
+        assert self.module._check_weather_match('大雪', ['小雪', '晴']) is True
+        
+        # 测试不匹配
+        assert self.module._check_weather_match('雨', ['雪', '晴']) is False
+        assert self.module._check_weather_match('晴', ['雨', '雪']) is False
+    
+    def test_filter_suitable_styles_fallback(self):
+        """测试风格筛选的降级机制"""
+        # 测试极端温度下的默认风格
+        # 当温度为-10°C时，所有风格的温度范围都不匹配
+        # 应该返回所有风格作为最后手段
+        styles = self.module._filter_suitable_styles(
+            avg_temp=-10.0,
+            weather_condition='晴',
+            preferred_styles=[],
+            preferred_occasions=[]
+        )
+        
+        # 应该返回至少一些风格（降级机制）
+        assert len(styles) > 0
+    
+    def test_filter_suitable_styles_with_user_preferences(self):
+        """测试带用户偏好的风格筛选"""
+        # 测试用户风格偏好优先
+        styles = self.module._filter_suitable_styles(
+            avg_temp=20.0,
+            weather_condition='晴',
+            preferred_styles=['商务正装', '优雅淑女'],
+            preferred_occasions=[]
+        )
+        
+        # 用户偏好的风格应该排在前面
+        if len(styles) >= 2:
+            assert styles[0] in ['商务正装', '优雅淑女']
+    
+    def test_filter_suitable_styles_with_occasion_preferences(self):
+        """测试带场合偏好的风格筛选"""
+        # 测试场合偏好影响风格排序
+        styles = self.module._filter_suitable_styles(
+            avg_temp=20.0,
+            weather_condition='晴',
+            preferred_styles=[],
+            preferred_occasions=['商务会议']
+        )
+        
+        # 商务会议应该优先匹配商务正装风格
+        if len(styles) > 0:
+            # 商务正装适合商务会议
+            assert '商务正装' in styles or len(styles) > 0

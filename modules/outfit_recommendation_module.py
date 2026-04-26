@@ -208,26 +208,41 @@ class OutfitRecommendationModule(BaseModule, IOutfitRecommendationModule):
         """
         suitable_styles = []
         
+        # 第一阶段：严格匹配（温度和天气都匹配）
         for style_name, style_info in self.STYLES.items():
             # 检查温度范围
             min_temp, max_temp = style_info['温度范围']
             if not (min_temp <= avg_temp <= max_temp):
                 continue
             
-            # 检查天气偏好
-            weather_match = any(
-                pref in weather_condition 
-                for pref in style_info['天气偏好']
-            )
+            # 检查天气偏好（使用更宽松的匹配）
+            weather_match = self._check_weather_match(weather_condition, style_info['天气偏好'])
             if not weather_match:
                 continue
             
-            # 检查用户偏好
-            if preferred_styles and style_name not in preferred_styles:
-                # 可以考虑但权重降低
-                pass
-            
             suitable_styles.append(style_name)
+        
+        # 第二阶段：如果没有严格匹配的风格，放宽天气条件
+        if not suitable_styles:
+            for style_name, style_info in self.STYLES.items():
+                # 检查温度范围
+                min_temp, max_temp = style_info['温度范围']
+                if not (min_temp <= avg_temp <= max_temp):
+                    continue
+                
+                # 不检查天气，只看温度
+                suitable_styles.append(style_name)
+        
+        # 第三阶段：如果还是没有，返回所有风格（作为最后手段）
+        if not suitable_styles:
+            suitable_styles = list(self.STYLES.keys())
+        
+        # 如果用户有风格偏好，优先考虑
+        if preferred_styles:
+            # 将用户偏好的风格放在前面
+            preferred_list = [s for s in preferred_styles if s in suitable_styles]
+            other_list = [s for s in suitable_styles if s not in preferred_styles]
+            suitable_styles = preferred_list + other_list
         
         # 如果用户有场合偏好，调整顺序
         if preferred_occasions:
@@ -241,10 +256,44 @@ class OutfitRecommendationModule(BaseModule, IOutfitRecommendationModule):
                         score += 1
                 style_scores[style] = score
             
-            # 按分数排序
+            # 按分数排序（分数高的在前）
             suitable_styles.sort(key=lambda s: style_scores.get(s, 0), reverse=True)
         
         return suitable_styles
+    
+    def _check_weather_match(self, weather_condition: str, preferred_weathers: List[str]) -> bool:
+        """检查天气是否匹配
+        
+        Args:
+            weather_condition: 实际天气状况
+            preferred_weathers: 风格偏好的天气列表
+            
+        Returns:
+            是否匹配
+        """
+        # 标准化天气条件
+        weather_lower = weather_condition.lower()
+        
+        for pref in preferred_weathers:
+            pref_lower = pref.lower()
+            
+            # 精确匹配
+            if pref_lower == weather_lower:
+                return True
+            
+            # 包含匹配
+            if pref_lower in weather_lower or weather_lower in pref_lower:
+                return True
+            
+            # 特殊处理：小雨/中雨/大雨/阵雨/雷阵雨 都属于雨类
+            if '雨' in pref_lower and '雨' in weather_lower:
+                return True
+            
+            # 雪类
+            if '雪' in pref_lower and '雪' in weather_lower:
+                return True
+        
+        return False
     
     def _generate_outfit_recommendation(self, style: str,
                                         lucky_colors: List[Dict[str, Any]],

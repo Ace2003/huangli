@@ -73,3 +73,69 @@ framework.error_handler.ModuleException: [HUANGLI_FETCH_ERROR] [HuangliModule] »
 2026-04-27 06:30:18,375 [INFO] __main__:72: Éú³É´©´îÍÆ¼ö³É¹¦: 1 Ì×
 2026-04-27 06:30:18,375 [INFO] framework.performance_monitor:82: ²Ù×÷ [´©´îÍÆ¼ö¼ÆËã] Ö´ĞĞ³É¹¦, ºÄÊ±: 0.0002Ãë
 2026-04-27 06:30:18,376 [INFO] __main__:107: ÔËÊÆÖúÊÖÔËĞĞÍê³É
+2026-04-27 06:40:58,934 [INFO] framework.logger:22: ÈÕÖ¾ÏµÍ³³õÊ¼»¯Íê³É
+2026-04-27 06:40:58,934 [INFO] __main__:32: Æô¶¯ÔËÊÆÖúÊÖ...
+2026-04-27 06:40:58,934 [INFO] HuangliModule:60: ¿ªÊ¼³õÊ¼»¯Ä£¿é: HuangliModule
+2026-04-27 06:40:58,934 [INFO] HuangliModule:70: »ÆÀúÄ£¿é³õÊ¼»¯Íê³É
+2026-04-27 06:40:58,935 [INFO] framework.performance_monitor:82: ²Ù×÷ [HuangliModule.³õÊ¼»¯] Ö´ĞĞ³É¹¦, ºÄÊ±: 0.0001Ãë
+2026-04-27 06:40:58,935 [INFO] HuangliModule:74: Ä£¿é HuangliModule ³õÊ¼»¯³É¹¦
+2026-04-27 06:40:58,935 [INFO] WeatherModule:60: ¿ªÊ¼³õÊ¼»¯Ä£¿é: WeatherModule
+2026-04-27 06:40:58,935 [INFO] WeatherModule:48: ÌìÆøÄ£¿é³õÊ¼»¯Íê³É
+2026-04-27 06:40:58,935 [INFO] framework.performance_monitor:82: ²Ù×÷ [WeatherModule.³õÊ¼»¯] Ö´ĞĞ³É¹¦, ºÄÊ±: 0.0001Ãë
+2026-04-27 06:40:58,935 [INFO] WeatherModule:74: Ä£¿é WeatherModule ³õÊ¼»¯³É¹¦
+2026-04-27 06:40:58,935 [INFO] LuckyColorModule:60: ¿ªÊ¼³õÊ¼»¯Ä£¿é: LuckyColorModule
+2026-04-27 06:40:58,936 [INFO] LuckyColorModule:99: ĞÒÔËÉ«Ä£¿é³õÊ¼»¯Íê³É
+2026-04-27 06:40:58,936 [INFO] framework.performance_monitor:82: ²Ù×÷ [LuckyColorModule.³õÊ¼»¯] Ö´ĞĞ³É¹¦, ºÄÊ±: 0.0002Ãë
+2026-04-27 06:40:58,936 [INFO] LuckyColorModule:74: Ä£¿é LuckyColorModule ³õÊ¼»¯³É¹¦
+2026-04-27 06:40:58,936 [INFO] OutfitRecommendationModule:60: ¿ªÊ¼³õÊ¼»¯Ä£¿é: OutfitRecommendationModule
+2026-04-27 06:40:58,936 [INFO] OutfitRecommendationModule:122: ´©´îÍÆ¼öÄ£¿é³õÊ¼»¯Íê³É
+2026-04-27 06:40:58,936 [INFO] framework.performance_monitor:82: ²Ù×÷ [OutfitRecommendationModule.³õÊ¼»¯] Ö´ĞĞ³É¹¦, ºÄÊ±: 0.0001Ãë
+2026-04-27 06:40:58,936 [INFO] OutfitRecommendationModule:74: Ä£¿é OutfitRecommendationModule ³õÊ¼»¯³É¹¦
+2026-04-27 06:40:58,936 [INFO] framework.performance_monitor:82: ²Ù×÷ [Ä£¿é³õÊ¼»¯] Ö´ĞĞ³É¹¦, ºÄÊ±: 0.0021Ãë
+2026-04-27 06:40:58,937 [INFO] __main__:50: µ±Ç°ÈÕÆÚ: 2026-04-27
+2026-04-27 06:40:58,937 [INFO] HuangliModule:106: ³É¹¦»ñÈ¡»ÆÀúÊı¾İ: 2026-04-27
+2026-04-27 06:40:58,937 [INFO] __main__:55: »ñÈ¡»ÆÀúĞÅÏ¢³É¹¦: N/A
+2026-04-27 06:40:58,937 [INFO] framework.performance_monitor:82: ²Ù×÷ [»ÆÀúÊı¾İ»ñÈ¡] Ö´ĞĞ³É¹¦, ºÄÊ±: 0.0004Ãë
+2026-04-27 06:40:58,937 [INFO] WeatherModule:99: ³É¹¦»ñÈ¡ÌìÆøÊı¾İ: ±±¾© 2026-04-27
+2026-04-27 06:40:58,937 [INFO] __main__:60: »ñÈ¡ÌìÆøĞÅÏ¢³É¹¦: ÕóÓê
+2026-04-27 06:40:58,937 [INFO] framework.performance_monitor:82: ²Ù×÷ [ÌìÆøÊı¾İ»ñÈ¡] Ö´ĞĞ³É¹¦, ºÄÊ±: 0.0003Ãë
+2026-04-27 06:40:58,938 [INFO] LuckyColorModule:165: ³É¹¦Éú³ÉĞÒÔËÉ«ÍÆ¼ö: 6 ÖÖÑÕÉ«
+2026-04-27 06:40:58,938 [INFO] __main__:65: ½ñÈÕĞÒÔËÉ«: ºÚÉ«, À¶É«, ÉîÀ¶É«, ·ÛºìÉ«, ÄÛÂÌÉ«, ¶ì»ÆÉ«
+2026-04-27 06:40:58,938 [INFO] framework.performance_monitor:82: ²Ù×÷ [ĞÒÔËÉ«¼ÆËã] Ö´ĞĞ³É¹¦, ºÄÊ±: 0.0003Ãë
+2026-04-27 06:40:58,938 [INFO] OutfitRecommendationModule:180: ³É¹¦Éú³É´©´îÍÆ¼ö: 0 Ì×
+2026-04-27 06:40:58,938 [INFO] __main__:72: Éú³É´©´îÍÆ¼ö³É¹¦: 0 Ì×
+2026-04-27 06:40:58,938 [INFO] framework.performance_monitor:82: ²Ù×÷ [´©´îÍÆ¼ö¼ÆËã] Ö´ĞĞ³É¹¦, ºÄÊ±: 0.0002Ãë
+2026-04-27 06:40:58,939 [INFO] __main__:107: ÔËÊÆÖúÊÖÔËĞĞÍê³É
+2026-04-27 06:41:49,524 [INFO] framework.logger:22: ÈÕÖ¾ÏµÍ³³õÊ¼»¯Íê³É
+2026-04-27 06:41:49,524 [INFO] __main__:32: Æô¶¯ÔËÊÆÖúÊÖ...
+2026-04-27 06:41:49,525 [INFO] HuangliModule:60: ¿ªÊ¼³õÊ¼»¯Ä£¿é: HuangliModule
+2026-04-27 06:41:49,526 [INFO] HuangliModule:70: »ÆÀúÄ£¿é³õÊ¼»¯Íê³É
+2026-04-27 06:41:49,527 [INFO] framework.performance_monitor:82: ²Ù×÷ [HuangliModule.³õÊ¼»¯] Ö´ĞĞ³É¹¦, ºÄÊ±: 0.0004Ãë
+2026-04-27 06:41:49,527 [INFO] HuangliModule:74: Ä£¿é HuangliModule ³õÊ¼»¯³É¹¦
+2026-04-27 06:41:49,527 [INFO] WeatherModule:60: ¿ªÊ¼³õÊ¼»¯Ä£¿é: WeatherModule
+2026-04-27 06:41:49,528 [INFO] WeatherModule:48: ÌìÆøÄ£¿é³õÊ¼»¯Íê³É
+2026-04-27 06:41:49,528 [INFO] framework.performance_monitor:82: ²Ù×÷ [WeatherModule.³õÊ¼»¯] Ö´ĞĞ³É¹¦, ºÄÊ±: 0.0003Ãë
+2026-04-27 06:41:49,528 [INFO] WeatherModule:74: Ä£¿é WeatherModule ³õÊ¼»¯³É¹¦
+2026-04-27 06:41:49,528 [INFO] LuckyColorModule:60: ¿ªÊ¼³õÊ¼»¯Ä£¿é: LuckyColorModule
+2026-04-27 06:41:49,529 [INFO] LuckyColorModule:99: ĞÒÔËÉ«Ä£¿é³õÊ¼»¯Íê³É
+2026-04-27 06:41:49,529 [INFO] framework.performance_monitor:82: ²Ù×÷ [LuckyColorModule.³õÊ¼»¯] Ö´ĞĞ³É¹¦, ºÄÊ±: 0.0004Ãë
+2026-04-27 06:41:49,530 [INFO] LuckyColorModule:74: Ä£¿é LuckyColorModule ³õÊ¼»¯³É¹¦
+2026-04-27 06:41:49,530 [INFO] OutfitRecommendationModule:60: ¿ªÊ¼³õÊ¼»¯Ä£¿é: OutfitRecommendationModule
+2026-04-27 06:41:49,530 [INFO] OutfitRecommendationModule:122: ´©´îÍÆ¼öÄ£¿é³õÊ¼»¯Íê³É
+2026-04-27 06:41:49,531 [INFO] framework.performance_monitor:82: ²Ù×÷ [OutfitRecommendationModule.³õÊ¼»¯] Ö´ĞĞ³É¹¦, ºÄÊ±: 0.0003Ãë
+2026-04-27 06:41:49,531 [INFO] OutfitRecommendationModule:74: Ä£¿é OutfitRecommendationModule ³õÊ¼»¯³É¹¦
+2026-04-27 06:41:49,531 [INFO] framework.performance_monitor:82: ²Ù×÷ [Ä£¿é³õÊ¼»¯] Ö´ĞĞ³É¹¦, ºÄÊ±: 0.0061Ãë
+2026-04-27 06:41:49,532 [INFO] __main__:50: µ±Ç°ÈÕÆÚ: 2026-04-27
+2026-04-27 06:41:49,532 [INFO] HuangliModule:106: ³É¹¦»ñÈ¡»ÆÀúÊı¾İ: 2026-04-27
+2026-04-27 06:41:49,532 [INFO] __main__:55: »ñÈ¡»ÆÀúĞÅÏ¢³É¹¦: N/A
+2026-04-27 06:41:49,533 [INFO] framework.performance_monitor:82: ²Ù×÷ [»ÆÀúÊı¾İ»ñÈ¡] Ö´ĞĞ³É¹¦, ºÄÊ±: 0.0007Ãë
+2026-04-27 06:41:49,533 [INFO] WeatherModule:99: ³É¹¦»ñÈ¡ÌìÆøÊı¾İ: ±±¾© 2026-04-27
+2026-04-27 06:41:49,534 [INFO] __main__:60: »ñÈ¡ÌìÆøĞÅÏ¢³É¹¦: ÕóÓê
+2026-04-27 06:41:49,535 [INFO] framework.performance_monitor:82: ²Ù×÷ [ÌìÆøÊı¾İ»ñÈ¡] Ö´ĞĞ³É¹¦, ºÄÊ±: 0.0016Ãë
+2026-04-27 06:41:49,535 [INFO] LuckyColorModule:165: ³É¹¦Éú³ÉĞÒÔËÉ«ÍÆ¼ö: 6 ÖÖÑÕÉ«
+2026-04-27 06:41:49,536 [INFO] __main__:65: ½ñÈÕĞÒÔËÉ«: ºÚÉ«, À¶É«, ÉîÀ¶É«, ·ÛºìÉ«, ÄÛÂÌÉ«, ¶ì»ÆÉ«
+2026-04-27 06:41:49,536 [INFO] framework.performance_monitor:82: ²Ù×÷ [ĞÒÔËÉ«¼ÆËã] Ö´ĞĞ³É¹¦, ºÄÊ±: 0.0007Ãë
+2026-04-27 06:41:49,536 [INFO] OutfitRecommendationModule:180: ³É¹¦Éú³É´©´îÍÆ¼ö: 0 Ì×
+2026-04-27 06:41:49,537 [INFO] __main__:72: Éú³É´©´îÍÆ¼ö³É¹¦: 0 Ì×
+2026-04-27 06:41:49,537 [INFO] framework.performance_monitor:82: ²Ù×÷ [´©´îÍÆ¼ö¼ÆËã] Ö´ĞĞ³É¹¦, ºÄÊ±: 0.0013Ãë
+2026-04-27 06:41:49,549 [INFO] __main__:107: ÔËÊÆÖúÊÖÔËĞĞÍê³É
