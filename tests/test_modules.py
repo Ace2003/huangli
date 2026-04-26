@@ -540,6 +540,60 @@ class TestUserInfoModule:
         """测试获取空用户偏好"""
         preferences = self.module.get_user_preferences()
         assert preferences == {}
+    
+    def test_validate_name_valid_chinese(self):
+        """测试验证有效的中文姓名"""
+        # 有效的中文姓名
+        assert self.module._validate_name('张三')[0] is True
+        assert self.module._validate_name('欧阳娜娜')[0] is True
+        assert self.module._validate_name('李小龙')[0] is True
+    
+    def test_validate_name_valid_english(self):
+        """测试验证有效的英文姓名"""
+        # 有效的英文姓名
+        assert self.module._validate_name('John')[0] is True
+        assert self.module._validate_name('John Smith')[0] is True
+        assert self.module._validate_name('Mary-Ann')[0] is True
+        assert self.module._validate_name('Robert Downey Jr')[0] is True
+    
+    def test_validate_name_valid_mixed(self):
+        """测试验证有效的中英文混合姓名"""
+        # 有效的中英文混合
+        assert self.module._validate_name('李John')[0] is True
+        assert self.module._validate_name('王小明ABC')[0] is True
+    
+    def test_validate_name_invalid_empty(self):
+        """测试验证无效的空姓名"""
+        # 空值
+        assert self.module._validate_name('')[0] is False
+        assert self.module._validate_name('   ')[0] is False
+    
+    def test_validate_name_invalid_too_short(self):
+        """测试验证无效的过短姓名"""
+        # 单个字符
+        assert self.module._validate_name('A')[0] is False
+        assert self.module._validate_name('李')[0] is False
+    
+    def test_validate_name_invalid_numbers(self):
+        """测试验证无效的纯数字姓名"""
+        # 纯数字
+        assert self.module._validate_name('00')[0] is False
+        assert self.module._validate_name('12345')[0] is False
+        assert self.module._validate_name('0')[0] is False
+    
+    def test_validate_name_invalid_special_chars(self):
+        """测试验证无效的纯特殊字符姓名"""
+        # 纯特殊字符
+        assert self.module._validate_name('!!!')[0] is False
+        assert self.module._validate_name('@@@')[0] is False
+        assert self.module._validate_name('###')[0] is False
+        assert self.module._validate_name('!!!@@@###')[0] is False
+    
+    def test_validate_name_invalid_mixed(self):
+        """测试验证无效的混合字符姓名"""
+        # 有效字符不足2个
+        assert self.module._validate_name('张1')[0] is False  # 只有1个中文字符，其他是数字
+        assert self.module._validate_name('A!')[0] is False  # 只有1个英文字母，其他是特殊字符
 
 
 class TestOutfitRecommendationImprovements:

@@ -12,6 +12,25 @@ class UserInfoModule(BaseModule):
     处理用户个人信息的收集、验证和存储
     """
     
+    # 姓名验证正则表达式
+    # 支持：
+    # - 中文姓名：2-20个中文字符
+    # - 英文姓名：2-50个英文字母，支持空格和连字符
+    # - 中英文混合：至少包含2个有效字符
+    NAME_PATTERN = re.compile(
+        r'^[\u4e00-\u9fa5]{2,20}$|'  # 纯中文
+        r'^[a-zA-Z]+(?:[ -][a-zA-Z]+){0,10}$|'  # 英文，支持空格和连字符
+        r'^[\u4e00-\u9fa5a-zA-Z]{2,30}$'  # 中英文混合
+    )
+    
+    # 禁止的姓名模式
+    INVALID_NAME_PATTERNS = [
+        re.compile(r'^\d+$'),  # 纯数字
+        re.compile(r'^[_\-!@#$%^&*()+=,.?;:{}[\]\\|`~]+$'),  # 纯特殊字符
+        re.compile(r'^[a-zA-Z]$'),  # 单个英文字母
+        re.compile(r'^[\u4e00-\u9fa5]$'),  # 单个中文字
+    ]
+    
     # 生肖对应关系（年份 % 12）
     ZODIAC_MAP = {
         0: '猴', 1: '鸡', 2: '狗', 3: '猪', 4: '鼠', 5: '牛',
@@ -70,12 +89,25 @@ class UserInfoModule(BaseModule):
             user_data = {}
             
             # 1. 姓名
+            print("\n【姓名输入规则】")
+            print("• 中文姓名：2-20个中文字符（如：张三、欧阳娜娜）")
+            print("• 英文姓名：2个以上英文字母，支持空格和连字符（如：John Smith、Mary-Ann）")
+            print("• 中英文混合：至少2个有效字符（如：李John）")
+            print("• 不能是纯数字、纯特殊字符或单个字符")
+            
             while True:
                 name = input("\n请输入您的姓名：").strip()
-                if name:
+                
+                # 验证姓名
+                is_valid, error_msg = self._validate_name(name)
+                
+                if is_valid:
                     user_data['姓名'] = name
+                    self.logger.info(f"姓名验证通过: {name}")
                     break
-                print("姓名不能为空，请重新输入。")
+                else:
+                    print(f"❌ 姓名无效：{error_msg}")
+                    print("请重新输入符合规则的姓名。")
             
             # 2. 性别
             while True:
@@ -249,6 +281,59 @@ class UserInfoModule(BaseModule):
         
         # 如果都不满足，说明是1月1日-1月19日，属于摩羯座
         return '摩羯座'
+    
+    def _validate_name(self, name: str) -> tuple:
+        """验证姓名是否有效
+        
+        Args:
+            name: 姓名字符串
+            
+        Returns:
+            (是否有效, 错误信息) 元组
+        """
+        # 检查空值
+        if not name or name.strip() == '':
+            return False, "姓名不能为空"
+        
+        name = name.strip()
+        
+        # 检查长度
+        if len(name) < 2:
+            return False, "姓名至少需要2个字符"
+        
+        if len(name) > 50:
+            return False, "姓名不能超过50个字符"
+        
+        # 检查禁止的模式
+        for pattern in self.INVALID_NAME_PATTERNS:
+            if pattern.match(name):
+                if re.match(r'^\d+$', name):
+                    return False, "姓名不能是纯数字"
+                elif re.match(r'^[_\-!@#$%^&*()+=,.?;:{}[\]\\|`~]+$', name):
+                    return False, "姓名不能是纯特殊字符"
+                elif len(name) == 1:
+                    return False, "姓名至少需要2个字符"
+        
+        # 检查是否符合姓名格式
+        if self.NAME_PATTERN.match(name):
+            return True, "验证通过"
+        
+        # 额外的验证逻辑
+        # 统计有效字符数量
+        chinese_chars = len(re.findall(r'[\u4e00-\u9fa5]', name))
+        english_chars = len(re.findall(r'[a-zA-Z]', name))
+        
+        # 检查是否包含至少2个有效字符（中文或英文）
+        if chinese_chars + english_chars < 2:
+            return False, "姓名需要至少包含2个中文字符或英文字母"
+        
+        # 检查是否包含过多无效字符
+        invalid_chars = len(name) - chinese_chars - english_chars - name.count(' ') - name.count('-')
+        if invalid_chars > 0:
+            return False, "姓名只能包含中文字符、英文字母、空格和连字符"
+        
+        # 允许通过（兜底）
+        return True, "验证通过"
     
     def _show_supported_cities(self):
         """显示支持的城市列表"""
