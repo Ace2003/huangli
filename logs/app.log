@@ -1,0 +1,75 @@
+2026-04-27 06:29:57,428 [INFO] framework.logger:22: 日志系统初始化完成
+2026-04-27 06:29:57,428 [INFO] __main__:32: 启动运势助手...
+2026-04-27 06:29:57,428 [INFO] framework.performance_monitor:82: 操作 [模块初始化] 执行成功, 耗时: 0.0000秒
+2026-04-27 06:29:57,428 [INFO] __main__:44: 当前日期: 2026-04-27
+2026-04-27 06:29:57,431 [ERROR] framework.error_handler:161: [获取黄历数据] 异常发生: [MODULE_NOT_READY] [HuangliModule] 模块状态异常: 当前状态为 未初始化，需要为 就绪
+2026-04-27 06:29:57,431 [DEBUG] framework.error_handler:162: 异常详情:
+Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\3\huangli\modules\huangli_module.py", line 92, in get_huangli
+    self.check_ready()
+    ~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Administrator\Desktop\3\huangli\framework\base_module.py", line 166, in check_ready
+    raise ModuleException(
+    ...<3 lines>...
+    )
+framework.error_handler.ModuleException: [MODULE_NOT_READY] [HuangliModule] 模块状态异常: 当前状态为 未初始化，需要为 就绪
+
+2026-04-27 06:29:57,431 [WARNING] framework.performance_monitor:74: 操作 [黄历数据获取] 执行失败: [HUANGLI_FETCH_ERROR] [HuangliModule] 获取黄历数据失败: [MODULE_NOT_READY] [HuangliModule] 模块状态异常: 当前状态为 未初始化，需要为 就绪
+2026-04-27 06:29:57,432 [INFO] framework.performance_monitor:82: 操作 [黄历数据获取] 执行失败, 耗时: 0.0029秒
+2026-04-27 06:29:57,434 [ERROR] framework.error_handler:161: [主程序运行] 异常发生: [HUANGLI_FETCH_ERROR] [HuangliModule] 获取黄历数据失败: [MODULE_NOT_READY] [HuangliModule] 模块状态异常: 当前状态为 未初始化，需要为 就绪
+2026-04-27 06:29:57,435 [DEBUG] framework.error_handler:162: 异常详情:
+Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\3\huangli\modules\huangli_module.py", line 92, in get_huangli
+    self.check_ready()
+    ~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Administrator\Desktop\3\huangli\framework\base_module.py", line 166, in check_ready
+    raise ModuleException(
+    ...<3 lines>...
+    )
+framework.error_handler.ModuleException: [MODULE_NOT_READY] [HuangliModule] 模块状态异常: 当前状态为 未初始化，需要为 就绪
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\3\huangli\main.py", line 48, in main
+    huangli_data = huangli_module.get_huangli(today)
+  File "C:\Users\Administrator\Desktop\3\huangli\modules\huangli_module.py", line 112, in get_huangli
+    raise ModuleException(
+    ...<3 lines>...
+    )
+framework.error_handler.ModuleException: [HUANGLI_FETCH_ERROR] [HuangliModule] 获取黄历数据失败: [MODULE_NOT_READY] [HuangliModule] 模块状态异常: 当前状态为 未初始化，需要为 就绪
+
+2026-04-27 06:29:57,435 [ERROR] __main__:105: 程序运行出错: [HUANGLI_FETCH_ERROR] [HuangliModule] 获取黄历数据失败: [MODULE_NOT_READY] [HuangliModule] 模块状态异常: 当前状态为 未初始化，需要为 就绪
+2026-04-27 06:30:18,372 [INFO] framework.logger:22: 日志系统初始化完成
+2026-04-27 06:30:18,372 [INFO] __main__:32: 启动运势助手...
+2026-04-27 06:30:18,372 [INFO] HuangliModule:60: 开始初始化模块: HuangliModule
+2026-04-27 06:30:18,372 [INFO] HuangliModule:70: 黄历模块初始化完成
+2026-04-27 06:30:18,372 [INFO] framework.performance_monitor:82: 操作 [HuangliModule.初始化] 执行成功, 耗时: 0.0001秒
+2026-04-27 06:30:18,372 [INFO] HuangliModule:74: 模块 HuangliModule 初始化成功
+2026-04-27 06:30:18,373 [INFO] WeatherModule:60: 开始初始化模块: WeatherModule
+2026-04-27 06:30:18,373 [INFO] WeatherModule:48: 天气模块初始化完成
+2026-04-27 06:30:18,373 [INFO] framework.performance_monitor:82: 操作 [WeatherModule.初始化] 执行成功, 耗时: 0.0001秒
+2026-04-27 06:30:18,373 [INFO] WeatherModule:74: 模块 WeatherModule 初始化成功
+2026-04-27 06:30:18,373 [INFO] LuckyColorModule:60: 开始初始化模块: LuckyColorModule
+2026-04-27 06:30:18,373 [INFO] LuckyColorModule:99: 幸运色模块初始化完成
+2026-04-27 06:30:18,373 [INFO] framework.performance_monitor:82: 操作 [LuckyColorModule.初始化] 执行成功, 耗时: 0.0001秒
+2026-04-27 06:30:18,373 [INFO] LuckyColorModule:74: 模块 LuckyColorModule 初始化成功
+2026-04-27 06:30:18,373 [INFO] OutfitRecommendationModule:60: 开始初始化模块: OutfitRecommendationModule
+2026-04-27 06:30:18,373 [INFO] OutfitRecommendationModule:122: 穿搭推荐模块初始化完成
+2026-04-27 06:30:18,374 [INFO] framework.performance_monitor:82: 操作 [OutfitRecommendationModule.初始化] 执行成功, 耗时: 0.0001秒
+2026-04-27 06:30:18,374 [INFO] OutfitRecommendationModule:74: 模块 OutfitRecommendationModule 初始化成功
+2026-04-27 06:30:18,374 [INFO] framework.performance_monitor:82: 操作 [模块初始化] 执行成功, 耗时: 0.0016秒
+2026-04-27 06:30:18,374 [INFO] __main__:50: 当前日期: 2026-04-27
+2026-04-27 06:30:18,374 [INFO] HuangliModule:106: 成功获取黄历数据: 2026-04-27
+2026-04-27 06:30:18,374 [INFO] __main__:55: 获取黄历信息成功: N/A
+2026-04-27 06:30:18,374 [INFO] framework.performance_monitor:82: 操作 [黄历数据获取] 执行成功, 耗时: 0.0002秒
+2026-04-27 06:30:18,374 [INFO] WeatherModule:99: 成功获取天气数据: 北京 2026-04-27
+2026-04-27 06:30:18,374 [INFO] __main__:60: 获取天气信息成功: 小雨
+2026-04-27 06:30:18,375 [INFO] framework.performance_monitor:82: 操作 [天气数据获取] 执行成功, 耗时: 0.0002秒
+2026-04-27 06:30:18,375 [INFO] LuckyColorModule:165: 成功生成幸运色推荐: 6 种颜色
+2026-04-27 06:30:18,375 [INFO] __main__:65: 今日幸运色: 黑色, 蓝色, 深蓝色, 粉红色, 嫩绿色, 鹅黄色
+2026-04-27 06:30:18,375 [INFO] framework.performance_monitor:82: 操作 [幸运色计算] 执行成功, 耗时: 0.0003秒
+2026-04-27 06:30:18,375 [INFO] OutfitRecommendationModule:180: 成功生成穿搭推荐: 1 套
+2026-04-27 06:30:18,375 [INFO] __main__:72: 生成穿搭推荐成功: 1 套
+2026-04-27 06:30:18,375 [INFO] framework.performance_monitor:82: 操作 [穿搭推荐计算] 执行成功, 耗时: 0.0002秒
+2026-04-27 06:30:18,376 [INFO] __main__:107: 运势助手运行完成
